@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body.gray {
+  padding: 20px 0;
+  background-color: #ebebeb;
+}
+
+.recipe-card {
+  display: block;
+  background: #fff;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.row:last-child .recipe-card {
+  margin-bottom: 0;
+}
+
+.recipe-card__image > img {
+  width: 100%;
+}
+
+.recipe-card__detail {
+  padding: 20px 40px;
+}
+
+.recipe-card__detail > .recipe-card__title {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 24px;
+}
+
+.recipe-card__action {
+  border-top: 1px solid #eaeaea;
+  display: table;
+  width: 100%;
+}
+
+.recipe-card__action > .action__like, .recipe-card__action > .action__read {
+  padding: 20px 10px;
+  display: table-cell;
+  text-align: center;
+}
+
+.recipe-card__action > .action__like {
+  width: 80px;
+  border-right: 1px solid #eaeaea;
+}
+
+.recipe-card__action > .action__like > a {
+  color: #c96060;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.recipe-card__action > .action__read > a {
+  font-weight: bold;
+  color: #222;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.recipe-detail {
+
+}
+
+.recipe-detail__title {
+  margin-top: 24px;
+}
+
+.comments  {
+  margin-bottom: 15px;
+}
+
+.comments > .comments__header {
+  font-size: 18px;
+  margin-top: 0px;
+}
+
+.comment-item {
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ebebeb;
+  margin: 15px 0;
+}
