@@ -1,5 +1,6 @@
 import { mount } from './lib/dom';
 import { getRecipes } from './lib/request';
+import { SWManager } from './lib/service-worker';
 import { buildRecipesListTemplate } from './lib/templates';
 
 const takeResult = response => response.result;
@@ -9,3 +10,7 @@ getRecipes()
   .then(takeResult)
   .then(buildRecipesListTemplate)
   .then(mountIntoDOM);
+
+const sw = new SWManager();
+
+sw.register();

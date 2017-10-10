@@ -1,7 +1,8 @@
 export function getRecipeId() {
-  const queryString = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+  const match = /\d+/.exec(hash);
 
-  const recipeId = queryString.get('recipe_id');
+  const recipeId = match[0];
 
   if (!recipeId) {
     throw new Error('Please provide recipe_id query string');

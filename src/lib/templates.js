@@ -23,7 +23,7 @@ export function buildRecipeDetailHTML(recipe) {
 function recipeCardTemplate(recipe) {
   return `
     <div class="recipe-card">
-      <a class="recipe-card__image" href="/detail.html?recipe_id=${recipe.id}">
+      <a class="recipe-card__image" href="/detail.html#recipe_id=${recipe.id}">
         <img src="${recipe.image}" alt="">
       </a>
       <div class="recipe-card__detail">
@@ -35,7 +35,7 @@ function recipeCardTemplate(recipe) {
           <a href="#like">Like</a>
         </div>
         <div class="action__read">
-          <a href="/detail.html?recipe_id=${recipe.id}">Read More</a>
+          <a href="/detail.html#recipe_id=${recipe.id}">Read More</a>
         </div>
       </div>
     </div>
