@@ -90,3 +90,24 @@ body.gray {
   border: 1px solid #ebebeb;
   margin: 15px 0;
 }
+
+.update-alert {
+  background: #323232;
+  color: #fafafa;
+  padding: 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: bottom 300ms ease;
+}
+
+.update-alert--hide {
+  bottom: -60px;
+}
+
+.update-alert button {
+  color: #c96060;
+  font-weight: bold;
+  display: inline;
+}

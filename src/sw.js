@@ -18,8 +18,6 @@ self.addEventListener('install', (event) => {
     caches.open((cacheName))
       .then(cache => cache.addAll(filesToCache))
   );
-
-  self.skipWaiting();
 });
 
 self.addEventListener('fetch', (event) => {
@@ -45,7 +43,7 @@ self.addEventListener('fetch', (event) => {
             return response;
           })
           .catch(err => {
-            console.log('[ServiceWorker] Fetching failed ', err);
+            console.log('[ServiceWorker] Fetching failed', err);
           });
       })
   );
@@ -61,4 +59,10 @@ self.addEventListener('activate', (event) => {
         })
     ))
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
 });

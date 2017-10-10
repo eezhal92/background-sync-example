@@ -1,46 +1,66 @@
-export function SWManager() {
-  this.registration = null;
-  this.refreshing = false;
+import { getInstance } from './update-alert';
+
+export default class SWManager {
+  constructor() {
+    this.swRegistration = null;
+    this.swContainer = navigator.serviceWorker;
+
+    // only call once in constructor
+    // hide registerServiceWorker api from class
+    registerServiceWorker.call(this);
+  }
+
+  showUpdateAlert() {
+    const alert = getInstance();
+
+    alert.show();
+
+    alert.button.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      this.swRegistration.waiting.postMessage({ action: 'skipWaiting' })
+
+      alert.hide();
+    });
+  }
 }
 
-SWManager.prototype.register = function register() {
+function registerServiceWorker() {
   return navigator.serviceWorker.register('./sw.js')
     .then((registration) => {
-      this.registration = registration;
-
       log('Registered!');
 
+      this.swRegistration = registration;
+
       if (registration.waiting) {
-        log('Waiting...');
+        log('New service worker are waiting...');
 
-        return;
+        this.showUpdateAlert();
+      } else if (registration.installing) {
+        log('Installing service worker for the first time...');
+      } else if (registration.active) {
+        log('There is an active service worker running...');
       }
 
-      if (registration.installing) {
-        log('Installing...');
+      this.swRegistration.addEventListener('updatefound', (event) => {
+        const updateFound = event.target.active;
 
-        return;
-      }
+        if (!updateFound) {
+          return;
+        }
 
-      registration.addEventListener('updatefound', () => {
         log('Update Found!');
+        this.showUpdateAlert();
       });
 
-      this.listenControllerChange();
+      this.swContainer.addEventListener('controllerchange', () => {
+        log('Controller Changed!!');
+      });
     })
     .catch((err) => {
       log('Service Worker registration failed', err);
     });
-};
-
-SWManager.prototype.listenControllerChange = function listenControllerChange() {
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (this.refreshing) return;
-
-    window.location.reload();
-    this.refreshing = true;
-  });
-};
+}
 
 function log(message, err) {
   if (!err) err = '';
