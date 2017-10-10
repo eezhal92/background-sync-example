@@ -10,13 +10,7 @@ module.exports = merge(common, {
     filename: '[name].js',
     path: resolve(__dirname, 'public/dist'),
   },
-  devServer: {
-    contentBase: './public',
-    hot: true,
-    historyApiFallback: true,
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
