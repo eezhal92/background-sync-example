@@ -111,3 +111,9 @@ body.gray {
   font-weight: bold;
   display: inline;
 }
+
+.bg-sync-offer {
+  text-align: center;
+  margin-top: 120px;
+  padding: 20px 0;
+}

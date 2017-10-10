@@ -20,6 +20,26 @@ export function buildRecipeDetailHTML(recipe) {
   `;
 }
 
+export function buildBackgroundSyncOfferHTML() {
+  return `
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="bg-sync-offer">
+            <div class="bg-sync-offer__message">
+              Cannot get the recipe. You could load it in background. We'll notify You when ready.
+            </div>
+            <br>
+            <button id="do-bg-sync" class="btn bg-sync-offer__btn">
+              Load In Background
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function recipeCardTemplate(recipe) {
   return `
     <div class="recipe-card">
