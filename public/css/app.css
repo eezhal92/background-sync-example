@@ -112,8 +112,12 @@ body.gray {
   display: inline;
 }
 
-.bg-sync-offer {
+.bg-sync-offer, .bg-sync-confirmed {
   text-align: center;
   margin-top: 120px;
   padding: 20px 0;
+}
+
+.recipe-banner img {
+  margin: 0 auto;
 }

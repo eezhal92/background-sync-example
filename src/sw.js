@@ -1,5 +1,8 @@
+import storage from 'localforage';
+import { getRecipeAndCache } from './lib/request';
+
 const version = 'v1';
-const cacheName = `background-sync-demo-${version}`;
+export const cacheName = `background-sync-demo-${version}`;
 
 const filesToCache = [
   '/',
@@ -59,6 +62,44 @@ self.addEventListener('activate', (event) => {
         })
     ))
   );
+});
+
+const handleLoadRecipeSync = (event) => {
+  const getAllItems = (payloads) => {
+    const promises = payloads.map(async (payload) => {
+      const data = await getRecipeAndCache(payload.recipeId);
+
+      registration.showNotification(`${data.title} is ready!`, {
+        body: 'View recipe article',
+        data: { recipeId: data.id },
+      });
+    });
+
+    return Promise.all(promises);
+  };
+
+  const clearStorage = () => {
+    storage.setItem('load-recipe-queue', []);
+  };
+
+  event.waitUntil(storage.getItem('load-recipe-queue')
+    .then(getAllItems)
+    .then(clearStorage)
+  );
+};
+
+self.addEventListener('sync', (event) => {
+  console.info('[ServiceWorker] background sync event fired!', event.tag);
+
+  if (event.tag === 'load-recipe') {
+    handleLoadRecipeSync(event);
+  }
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+
+  clients.openWindow(`${location.origin}/detail.html#recipe_id=${event.notification.data.recipeId}`);
 });
 
 self.addEventListener('message', (event) => {

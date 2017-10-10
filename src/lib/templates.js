@@ -27,11 +27,27 @@ export function buildBackgroundSyncOfferHTML() {
         <div class="col-xs-12">
           <div class="bg-sync-offer">
             <div class="bg-sync-offer__message">
-              Cannot get the recipe. You could load it in background. We'll notify You when ready.
+              Cannot get the recipe. You could load it in background.
             </div>
             <br>
             <button id="do-bg-sync" class="btn bg-sync-offer__btn">
               Load In Background
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+export function buildConfirmedInfo() {
+  return `
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="bg-sync-confirmed">
+            <div class="bg-sync-confirmed__message">
+              Cool! We'll notify You when it's avaliable.
             </div>
           </div>
         </div>

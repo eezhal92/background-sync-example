@@ -7,3 +7,9 @@ export function submitComment() {
     console.info('Comment submitted!');
   });
 }
+
+export function approveLoadRecipe(callback) {
+  const commentForm = document.querySelector('#do-bg-sync');
+
+  commentForm.addEventListener('click', callback);
+}
