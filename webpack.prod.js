@@ -6,10 +6,6 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   devtool: 'cheap-module-source-map',
-  output: {
-    filename: '[name].js',
-    path: resolve(__dirname, 'public/dist'),
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
